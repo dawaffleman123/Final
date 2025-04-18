@@ -1,5 +1,5 @@
 package scanner.src;
 
 public interface scan {
-    boolean scan();
+    boolean scan(String ip);
 }
