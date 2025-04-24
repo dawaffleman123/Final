@@ -31,14 +31,25 @@ public class Icmp implements scan {
             while ((line = reader.readLine()) != null) {
                 logger.log(Level.INFO, line);
 
-                // Parse ping time from output (platform-specific parsing may be needed)
+                // Parse ping time from output
                 if (line.contains("time=")) {
                     int timeIndex = line.indexOf("time=") + 5;
-                    int msIndex = line.indexOf(" ms", timeIndex);
-                    String timeStr = line.substring(timeIndex, msIndex);
-                    totalPingTime += Double.parseDouble(timeStr);
-                    pingCount++;
-                    hostReachable = true;
+                    int msIndex = line.indexOf("ms", timeIndex); // Windows uses "ms" without a space
+                    if (msIndex == -1) {
+                        msIndex = line.indexOf(" ms", timeIndex); // Linux/Mac uses " ms" with a space
+                    }
+                    if (timeIndex >= 0 && msIndex > timeIndex && msIndex <= line.length()) {
+                        String timeStr = line.substring(timeIndex, msIndex).trim();
+                        try {
+                            totalPingTime += Double.parseDouble(timeStr);
+                            pingCount++;
+                            hostReachable = true;
+                        } catch (NumberFormatException e) {
+                            logger.log(Level.WARNING, "Failed to parse ping time: {0}", timeStr);
+                        }
+                    } else {
+                        logger.log(Level.WARNING, "Invalid substring indices for line: {0}", line);
+                    }
                 }
             }
 
