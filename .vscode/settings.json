@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "com/scanner"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.import.maven.enabled": false,
+    "java.import.gradle.enabled": false
+}
