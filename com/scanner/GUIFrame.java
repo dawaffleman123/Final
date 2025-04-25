@@ -19,6 +19,9 @@ public class GUIFrame extends JFrame {
         northPanel.add(new JLabel("Specify Port (will scan all by default, or specify a port or range)", SwingConstants.RIGHT));
         northPanel.add(firstPort);
         northPanel.add(secondPort);
+        JButton insertButton = new JButton("Insert");
+        JPanel midPanel = new JPanel();
+        midPanel.add(insertButton);
 
         add(northPanel, BorderLayout.NORTH);
 
@@ -31,11 +34,8 @@ public class GUIFrame extends JFrame {
 
         JPanel southPanel = new JPanel();
 
-        JButton insertButton = new JButton("Insert");
-        southPanel.add(insertButton);
         insertButton.addActionListener(event ->
-                textArea.append("IP address entered: " + IPaddress.getText() + " : "
-                        + new String(passwordField.getPassword()) + "\n"));
+                textArea.append("IP address entered: " + IPaddress.getText() ));
 
         add(southPanel, BorderLayout.SOUTH);
         pack();
