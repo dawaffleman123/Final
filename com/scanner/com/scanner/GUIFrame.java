@@ -1,3 +1,4 @@
+package com.scanner;
 import javax.swing.*;
 import java.awt.*;
 

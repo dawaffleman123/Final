@@ -3,6 +3,8 @@ package com.scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+
 public class main {
 
     public static void main(String[] args) {
@@ -20,7 +22,12 @@ public class main {
         }
         Dns dns = new Dns();
 
-
+        EventQueue.invokeLater(() -> {
+            JFrame frame = new GUIFrame();
+            frame.setTitle("Port Testing");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+        });
 
 
         System.out.println(icmp.scan("1.1.1.1")[1]);
