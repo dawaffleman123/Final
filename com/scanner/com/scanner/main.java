@@ -14,16 +14,18 @@ public class main {
         Tcp tcp = new Tcp();
         Udp udp = new Udp();
         Traceroute traceroute = new Traceroute();
-        //String[] tracerouteResult = traceroute.runTraceroute("1.1.1.1");
-        //for (String host : tracerouteResult) {
-        //    System.out.println(host);
-        //}
+        String[] tracerouteResult = traceroute.runTraceroute("1.1.1.1");
+        for (String host : tracerouteResult) {
+            System.out.println(host);
+        }
         Dns dns = new Dns();
 
+
+
+
         System.out.println(icmp.scan("1.1.1.1")[1]);
-        //System.out.println(tcp.scan("10.72.69.221", 80, 10000)[1]);
+        System.out.println(dns.scan("google.com", "10.72.69.206")[0]);
+        System.out.println(tcp.scan("10.72.69.221")[1]);
         //udp.scan("192.168.1.1");
     }
-}
-//port scanner button for tcp and udp
-//dns scanner
+};
